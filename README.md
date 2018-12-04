@@ -14,6 +14,9 @@ again for the same reason that only 10 different values are possible.
 ## INSTALLATION
 
 $mkdir build
+
 $cd build
+
 $cmake ..
+
 $make
