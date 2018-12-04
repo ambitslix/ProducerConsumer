@@ -11,9 +11,9 @@ Insertion sorting is an alternative way but it's slightly slower O(NlogN) althou
 again for the same reason that only 10 different values are possible.
 
 
-# INSTALLATION #
+## INSTALLATION
 
-`$mkdir build`
-`$cd build`
-`$cmake ..`
-`$make`
+$mkdir build
+$cd build
+$cmake ..
+$make
