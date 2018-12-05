@@ -104,7 +104,7 @@ void tokenize( string item, off_t offset, int algo, ofstream &os){
     for( char& c : item) {
 
         if( isdigit( c)) v.push_back( c);
-        else usleep( rand()%10000);
+        else usleep( SPACE_DELAY);
     }
 
     sort_token( v, algo);
