@@ -24,5 +24,6 @@ $make
 ## USAGE
 
 $./ProducerConsumer ~/input.txt ~/output.txt INSERT
+
 $./ProducerConsumer ~/input.txt ~/output.txt LOOKUP
 
