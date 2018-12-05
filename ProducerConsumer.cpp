@@ -5,7 +5,6 @@
 #include <sstream>
 #include <bits/stdc++.h>
 #include <thread>
-#include <cstdlib>
 #include <mutex>
 
 #include <errno.h>
@@ -17,7 +16,8 @@
 #define MAX_ITEM_LENGTH         100
 #define MAX_VALUE_SPACE         10          /** Only 10 different values of digits are possible */
 #define MAX_THREADS             4
-#define SPACE_DELAY             1000000     /** Delay in us between spaces */
+#define SPACE_DELAY             1000000     /** 1 second delay in microseconds between spaces */
+#define DELIMITER               ","         /** Delimiter for each character is comma */
 
 using namespace std;
 
@@ -29,6 +29,7 @@ enum PC_ERRORS{
     ERR_SYSTEM =            2
 };
 
+/** Sort codes */
 enum PC_SORT{
 
     SORT_NONE =             0,
@@ -40,7 +41,7 @@ std::mutex OSL;           // Lock for protecting output stream
 
 /** Write sorted vector to stream
 */
-void write_token( ofstream &os, const vector<char> &v, const char *separator = ","){
+void write_token( ofstream &os, const vector<char> &v, const char *separator = DELIMITER){
 
     for( vector<char>::const_iterator i = v.begin(); i != v.end(); ++i){
 

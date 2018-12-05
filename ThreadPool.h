@@ -4,7 +4,7 @@ class ThreadPool{
 
     public:
 
-    ThreadPool ( int threads) : shut ( false){
+    explicit ThreadPool ( int threads) : shut ( false){
 
         threads_.reserve( threads);
 
