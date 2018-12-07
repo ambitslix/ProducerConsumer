@@ -16,7 +16,7 @@
 #define MAX_ITEM_LENGTH         100
 #define MAX_VALUE_SPACE         10          /** Only 10 different values of digits are possible */
 #define MAX_THREADS             4
-#define SPACE_DELAY             1000000     /** 1 second delay in microseconds between spaces */
+#define SPACE_DELAY             0     /** 1 second delay in microseconds between spaces */
 #define DELIMITER               ","         /** Delimiter for each character is comma */
 
 using namespace std;
@@ -123,17 +123,18 @@ void tokenize( string item, off_t offset, int algo, ofstream &os){
 
 int main( int argc, char **argv){
 
+    string          algo_insert( "INSERT"), algo_lookup( "LOOKUP");
+    int             algo;
+
     if( argc < 4){
 
-        cout << "Insufficient parameters! Usage: " << argv[0] << " /inputFile /outputFile Sorting-method (1|2)" << endl;
+        cout << "Insufficient parameters! Usage: " << argv[0] << " /inputFile /outputFile Sorting-method (" << algo_insert + "|" << algo_lookup + ")" << endl;
 
         return( ERR_INVALID_INPUT);
     }
 
     ifstream        Input( argv[1]);
     ofstream        Output;
-    string          sort_algorithm( argv[3]), algo_insert( "INSERT"), algo_heap( "LOOKUP");
-    int             algo;
 
     if( Input.fail()){
 
@@ -151,12 +152,12 @@ int main( int argc, char **argv){
         return( ERR_SYSTEM);
     }
 
-    if( sort_algorithm == algo_insert) algo = SORT_INSERT;
+    if( argv[3] == algo_insert) algo = SORT_INSERT;
     else
-    if( sort_algorithm == algo_heap) algo = SORT_LOOKUP;
+    if( argv[3] == algo_lookup) algo = SORT_LOOKUP;
     else{
 
-        cerr << "Error: Invalid sort algorithm " << sort_algorithm << ". Valid choices are: " << algo_insert << "|" << algo_heap << endl;
+        cerr << "Error: Invalid sort algorithm " << argv[3] << ". Valid choices are: " << algo_insert + "|" + algo_lookup << endl;
 
         return( ERR_INVALID_INPUT);
     }
@@ -176,7 +177,7 @@ int main( int argc, char **argv){
         }
     }
 
-    cout << "Sorted " << offset << " bytes using " << sort_algorithm << endl;
+    cout << "Sorted " << offset << " bytes using " << argv[3] << endl;
 
     return( ERR_SUCCESS);
 }
